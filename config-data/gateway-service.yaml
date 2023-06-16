@@ -28,6 +28,10 @@ spring:
           uri: lb://empleado-service
           predicates:
             - Path=/empleado/**
+        - id: proveedor-service
+          uri: lb://proveedor-service
+          predicates:
+            - Path=/proveedor/**    
         - id: justificativo-service
           uri: lb://justificativo-service
           predicates:
