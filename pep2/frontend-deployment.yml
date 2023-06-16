@@ -16,6 +16,6 @@ spec:
     spec:
       containers:
         - name: frontend
-          image: johnserrano159/kubernetes-frontend
+          image: 
           ports:
             - containerPort: 3000
