@@ -1,6 +1,6 @@
-package com.tingeso.proveedorservice.reporitories;
+package com.tingeso.empleadoservice.reporitories;
 
-import com.tingeso.proveedorservice.entities.ProveedorEntity;
+import com.tingeso.empleadoservice.entities.ProveedorEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

@@ -20,6 +20,15 @@ export default function Home(){
                             <span class="header-text"><strong>Cargar DATA.txt</strong></span>
                         </div>
                     </div>
+                    <div className="single-box">
+                        <a href="/subir-archivo">
+                            <div className="img-area">
+                            </div>
+                        </a>
+                        <div className="img-text">
+                            <span className="header-text"><strong>Cargar Acopio.csv</strong></span>
+                        </div>
+                    </div>
                     <div class="single-box">
                         <a href="/lista-empleados">
                             <div class="img-area">
