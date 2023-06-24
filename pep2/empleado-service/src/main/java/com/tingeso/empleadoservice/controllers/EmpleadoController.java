@@ -17,7 +17,7 @@ public class EmpleadoController {
     @Autowired
     EmpleadoService empleadoService;
 
-    @GetMapping
+
     public ResponseEntity<List<EmpleadoEntity>> obtenerEmpleados(){
         List<EmpleadoEntity> empleados = empleadoService.obtenerEmpleados();
         if(empleados.isEmpty())

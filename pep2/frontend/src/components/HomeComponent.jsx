@@ -29,6 +29,15 @@ export default function Home(){
                             <span className="header-text"><strong>Cargar Acopio.csv</strong></span>
                         </div>
                     </div>
+                    <div className="single-box">
+                        <a href="/lista-proveedores">
+                            <div className="img-area">
+                            </div>
+                        </a>
+                        <div className="img-text">
+                            <span className="header-text"><strong>Proveedores</strong></span>
+                        </div>
+                    </div>
                     <div class="single-box">
                         <a href="/lista-empleados">
                             <div class="img-area">

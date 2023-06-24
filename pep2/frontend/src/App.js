@@ -4,6 +4,7 @@ import HomeComponent from './components/HomeComponent';
 import FileUploadComponent from './components/FileUploadComponent';
 import FileInformationComponent from './components/FileInformationComponent';
 import EmployeeComponent from './components/EmployeeComponent';
+import ProveedorComponent from './components/ProveedorComponent';
 import JustificativoComponent from './components/JustificativoComponent';
 import AutorizacionComponent from './components/AutorizacionComponent';
 import SueldosComponent from './components/SueldosComponent';
@@ -16,6 +17,7 @@ function App() {
         <Route path= "/subir-archivo" element={<FileUploadComponent />} />
         <Route path= "/informacion-archivo" element={<FileInformationComponent />} />
         <Route path= "/lista-empleados" element={<EmployeeComponent />} />
+        <Route path= "/lista-proveedores" element={<ProveedorComponent />} />
         <Route path= "/justificativo" element={<JustificativoComponent />} />
         <Route path= "/autorizacion" element={<AutorizacionComponent />} />
         <Route path= "/planilla-sueldos" element={<SueldosComponent />} />

@@ -2,6 +2,7 @@ package com.tingeso.empleadoservice.services;
 
 
 import com.tingeso.empleadoservice.entities.EmpleadoEntity;
+import com.tingeso.empleadoservice.entities.ProveedorEntity;
 import com.tingeso.empleadoservice.models.AutorizacionModel;
 import com.tingeso.empleadoservice.models.JustificativoModel;
 import com.tingeso.empleadoservice.reporitories.EmpleadoRepository;
@@ -49,4 +50,5 @@ public class EmpleadoService {
         List<AutorizacionModel> autorizaciones = restTemplate.getForObject("http://autorizacion-service/autorizaciones/porempleados/" + rut, List.class);
         return autorizaciones;
     }
+
 }
