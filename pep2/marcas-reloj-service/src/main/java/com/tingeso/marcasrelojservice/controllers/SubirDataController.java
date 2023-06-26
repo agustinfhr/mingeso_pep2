@@ -27,7 +27,7 @@ public class SubirDataController {
         return "fileUpload";
     }
 
-    @PostMapping("/fileUpload")
+    @PostMapping
     public String upload(@RequestParam("file") MultipartFile file, RedirectAttributes redirectAttributes) {
         subirData.guardar(file);
         redirectAttributes.addFlashAttribute("mensaje", "¡Archivo cargado correctamente!");
