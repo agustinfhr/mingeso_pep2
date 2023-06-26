@@ -31,7 +31,7 @@ spring:
         - id: justificativo-service
           uri: lb://justificativo-service
           predicates:
-            - Path=/justificativo/**
+            - Path=/subir-valor/**
         - id: autorizacion-service
           uri: lb://autorizacion-service
           predicates:
