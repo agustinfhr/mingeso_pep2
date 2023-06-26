@@ -1,5 +1,5 @@
-import React, { Component } from "react";
-import NavbarComponent3 from "./NavbarComponent3";
+import React, {Component, useState} from "react";
+import NavbarComponent2 from "./NavbarComponent2";
 import styled from "styled-components";
 
 class ProveedorComponent extends Component{
@@ -19,7 +19,7 @@ class ProveedorComponent extends Component{
     render(){
         return(
             <div className="home">
-                <NavbarComponent3 />
+                <NavbarComponent2 />
                 <Styles>
                     <h1 className="text-center"> <b>Listado de proveedores</b></h1>
                     <div className="f">
@@ -36,9 +36,9 @@ class ProveedorComponent extends Component{
                             {this.state.proveedores.map((proveedor) => (
                                 <tr key={proveedor.codigo}>
                                     <td>{proveedor.codigo}</td>
-                                    <td>{proveedor.Nombre}</td>
-                                    <td>{proveedor.Categoria}</td>
-                                    <td>{proveedor.Retencion}</td>
+                                    <td>{proveedor.nombre}</td>
+                                    <td>{proveedor.categoria}</td>
+                                    <td>{proveedor.retencion}</td>
                                 </tr>
                             ))}
                             </tbody>

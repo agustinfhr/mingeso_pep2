@@ -27,4 +27,16 @@ public class ProveedorController {
             return ResponseEntity.noContent().build();
         return ResponseEntity.ok(proveedores);
     }
+
+    @PostMapping
+    public ResponseEntity<ProveedorEntity> guardarProveedor(@RequestBody ProveedorEntity proveedor) {
+        String codigo = proveedor.getCodigo();
+        String nombre = proveedor.getNombre();
+        String categoria = proveedor.getCategoria();
+        String retencion = proveedor.getRetencion();
+        proveedorService.guardarProveedor(codigo, nombre, categoria, retencion);
+        return ResponseEntity.ok(proveedor);
+    }
+
+
 }

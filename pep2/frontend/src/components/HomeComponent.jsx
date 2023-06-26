@@ -64,6 +64,14 @@ export default function Home(){
                             <span class="header-text"><strong>Ingresar justificativos</strong></span>
                         </div>
                     </div>
+                    <div className="single-box">
+                        <a href="/nuevo-proveedor">
+                            <div className="img-area"></div>
+                        </a>
+                        <div className="img-text">
+                            <span className="header-text"><strong>Ingresar proveedor</strong></span>
+                        </div>
+                    </div>
                     <div class="single-box">
                         <a href="/autorizacion">
                             <div class="img-area"></div>
@@ -81,8 +89,9 @@ export default function Home(){
 
 
 const GlobalStyle = createGlobalStyle`
-    body { 
-        background-color: #262626;
+    body {
+      background-color: #262626;
+    }
 `
 const HomeStyle = styled.nav`
 

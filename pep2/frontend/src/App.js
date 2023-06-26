@@ -5,9 +5,11 @@ import FileUploadComponent from './components/FileUploadComponent';
 import FileInformationComponent from './components/FileInformationComponent';
 import EmployeeComponent from './components/EmployeeComponent';
 import ProveedorComponent from './components/ProveedorComponent';
+import NuevoProveedorComponent from './components/NuevoProveedorComponent';
 import JustificativoComponent from './components/JustificativoComponent';
 import AutorizacionComponent from './components/AutorizacionComponent';
 import SueldosComponent from './components/SueldosComponent';
+
 function App() {
   return (
     <div>
@@ -18,6 +20,7 @@ function App() {
         <Route path= "/informacion-archivo" element={<FileInformationComponent />} />
         <Route path= "/lista-empleados" element={<EmployeeComponent />} />
         <Route path= "/lista-proveedores" element={<ProveedorComponent />} />
+        <Route path= "/nuevo-proveedor" element={<NuevoProveedorComponent />} />
         <Route path= "/justificativo" element={<JustificativoComponent />} />
         <Route path= "/autorizacion" element={<AutorizacionComponent />} />
         <Route path= "/planilla-sueldos" element={<SueldosComponent />} />
