@@ -7,6 +7,7 @@ import FileInformationComponent from './components/FileInformationComponent';
 import EmployeeComponent from './components/EmployeeComponent';
 import ProveedorComponent from './components/ProveedorComponent';
 import NuevoProveedorComponent from './components/NuevoProveedorComponent';
+import PlanillaComponent from './components/PlanillaComponent';
 import AutorizacionComponent from './components/AutorizacionComponent';
 import SueldosComponent from './components/SueldosComponent';
 
@@ -22,6 +23,7 @@ function App() {
         <Route path= "/lista-empleados" element={<EmployeeComponent />} />
         <Route path= "/lista-proveedores" element={<ProveedorComponent />} />
         <Route path= "/nuevo-proveedor" element={<NuevoProveedorComponent />} />
+        <Route path= "/planilla-pago" element={<PlanillaComponent />} />
         <Route path= "/autorizacion" element={<AutorizacionComponent />} />
         <Route path= "/planilla-sueldos" element={<SueldosComponent />} />
 
