@@ -39,7 +39,7 @@ spring:
         - id: marcas-reloj-service
           uri: lb://marcas-reloj-service
           predicates:
-            - Path=/marcas-reloj/**
+            - Path=/subir-data/**
         - id: oficinaRRHH-service
           uri: lb://oficinaRRHH-service
           predicates:
