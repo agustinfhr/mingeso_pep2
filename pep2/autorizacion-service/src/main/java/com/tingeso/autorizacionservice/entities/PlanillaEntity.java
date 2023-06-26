@@ -1,4 +1,4 @@
-package com.tingeso.oficinaRRHHservice.entities;
+package com.tingeso.autorizacionservice.entities;
 
 import com.sun.istack.NotNull;
 import lombok.AllArgsConstructor;

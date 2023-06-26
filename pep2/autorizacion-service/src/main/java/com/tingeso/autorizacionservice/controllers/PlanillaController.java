@@ -1,7 +1,7 @@
-package com.tingeso.oficinaRRHHservice.controllers;
+package com.tingeso.autorizacionservice.controllers;
 
-import com.tingeso.oficinaRRHHservice.entities.PlanillaEntity;
-import com.tingeso.oficinaRRHHservice.services.PlanillaService;
+import com.tingeso.autorizacionservice.entities.PlanillaEntity;
+import com.tingeso.autorizacionservice.services.PlanillaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,7 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @RestController
-@RequestMapping("/planilla")
+@RequestMapping("/planilla-pago")
 public class PlanillaController {
 
     @Autowired
@@ -29,10 +29,4 @@ public class PlanillaController {
         return ResponseEntity.ok(planillas);
 
     }
-
-
-
-
-
-
 }

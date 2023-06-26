@@ -35,7 +35,7 @@ spring:
         - id: autorizacion-service
           uri: lb://autorizacion-service
           predicates:
-            - Path=/autorizacion/**
+            - Path=/planilla-pago/**
         - id: marcas-reloj-service
           uri: lb://marcas-reloj-service
           predicates:
