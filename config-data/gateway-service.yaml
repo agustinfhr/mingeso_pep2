@@ -43,4 +43,4 @@ spring:
         - id: oficinaRRHH-service
           uri: lb://oficinaRRHH-service
           predicates:
-            - Path=/oficinaRRHH/**
+            - Path=/planilla/**

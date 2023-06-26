@@ -2,11 +2,11 @@ import './App.module.css';
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import HomeComponent from './components/HomeComponent';
 import FileUploadComponent from './components/FileUploadComponent';
+import SubirValorComponent from './components/SubirValorComponent';
 import FileInformationComponent from './components/FileInformationComponent';
 import EmployeeComponent from './components/EmployeeComponent';
 import ProveedorComponent from './components/ProveedorComponent';
 import NuevoProveedorComponent from './components/NuevoProveedorComponent';
-import JustificativoComponent from './components/JustificativoComponent';
 import AutorizacionComponent from './components/AutorizacionComponent';
 import SueldosComponent from './components/SueldosComponent';
 
@@ -18,10 +18,10 @@ function App() {
         <Route path="/" element={<HomeComponent />} />
         <Route path= "/subir-archivo" element={<FileUploadComponent />} />
         <Route path= "/informacion-archivo" element={<FileInformationComponent />} />
+        <Route path= "/subir-valor" element={<SubirValorComponent />} />
         <Route path= "/lista-empleados" element={<EmployeeComponent />} />
         <Route path= "/lista-proveedores" element={<ProveedorComponent />} />
         <Route path= "/nuevo-proveedor" element={<NuevoProveedorComponent />} />
-        <Route path= "/justificativo" element={<JustificativoComponent />} />
         <Route path= "/autorizacion" element={<AutorizacionComponent />} />
         <Route path= "/planilla-sueldos" element={<SueldosComponent />} />
 

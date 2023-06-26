@@ -1,6 +1,7 @@
 package com.tingeso.justificativoservice.controllers;
 
 import com.tingeso.justificativoservice.entities.SubirValorEntity;
+import com.tingeso.justificativoservice.repositories.SubirValorRepository;
 import com.tingeso.justificativoservice.services.SubirValorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -18,9 +19,18 @@ public class SubirValorController {
     @Autowired
     private SubirValorService subirValor;
 
+    @Autowired
+    private SubirValorRepository valorRepository;
+
     @GetMapping("/fileValorUpload")
     public String main() {
         return "fileValorUpload";
+    }
+
+    @GetMapping("/{codigo}")
+    public ResponseEntity<SubirValorEntity> obtenerValorPorCodigo(@PathVariable("codigo") String codigo){
+        SubirValorEntity valor = valorRepository.findByProveedor(codigo);
+        return ResponseEntity.ok(valor);
     }
 
     @PostMapping

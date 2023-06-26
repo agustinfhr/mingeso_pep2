@@ -1,6 +1,7 @@
 package com.tingeso.marcasrelojservice.controllers;
 
 import com.tingeso.marcasrelojservice.entities.SubirDataEntity;
+import com.tingeso.marcasrelojservice.repositories.SubirDataRepository;
 import com.tingeso.marcasrelojservice.services.SubirDataService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -22,9 +23,18 @@ public class SubirDataController {
     @Autowired
     private SubirDataService subirData;
 
+    @Autowired
+    private SubirDataRepository dataRepository;
+
     @GetMapping("/fileUpload")
     public String main() {
         return "fileUpload";
+    }
+
+    @GetMapping("/{codigo}")
+    public ResponseEntity<ArrayList<SubirDataEntity>> obtenerPorCodigo(@PathVariable("codigo") String codigo){
+        ArrayList<SubirDataEntity> datas = dataRepository.findAllByCodigoOrderByDateAsc(codigo);
+        return ResponseEntity.ok(datas);
     }
 
     @PostMapping

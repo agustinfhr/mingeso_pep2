@@ -57,11 +57,11 @@ export default function Home(){
                         </div>
                     </div>
                     <div class="single-box">
-                        <a href="/justificativo">
+                        <a href="/subir-valor">
                             <div class="img-area"></div>
                         </a>
                         <div class="img-text">
-                            <span class="header-text"><strong>Ingresar justificativos</strong></span>
+                            <span class="header-text"><strong>Cargar Valores</strong></span>
                         </div>
                     </div>
                     <div className="single-box">
