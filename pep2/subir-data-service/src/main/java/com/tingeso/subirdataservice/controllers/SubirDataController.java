@@ -1,8 +1,8 @@
-package com.tingeso.marcasrelojservice.controllers;
+package com.tingeso.subirdataservice.controllers;
 
-import com.tingeso.marcasrelojservice.entities.SubirDataEntity;
-import com.tingeso.marcasrelojservice.repositories.SubirDataRepository;
-import com.tingeso.marcasrelojservice.services.SubirDataService;
+import com.tingeso.subirdataservice.entities.SubirDataEntity;
+import com.tingeso.subirdataservice.repositories.SubirDataRepository;
+import com.tingeso.subirdataservice.services.SubirDataService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -10,11 +10,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.ui.Model;
 
-import javax.ws.rs.Path;
-import java.io.FileNotFoundException;
-import java.text.ParseException;
 import java.util.ArrayList;
-import java.util.List;
 
 @RestController
 @RequestMapping("/subir-data")

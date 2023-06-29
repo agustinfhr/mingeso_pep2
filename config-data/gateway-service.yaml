@@ -36,8 +36,8 @@ spring:
           uri: lb://planilla-service
           predicates:
             - Path=/planilla-pago/**
-        - id: marcas-reloj-service
-          uri: lb://marcas-reloj-service
+        - id: subir-data-service
+          uri: lb://subir-data-service
           predicates:
             - Path=/subir-data/**
         - id: oficinaRRHH-service

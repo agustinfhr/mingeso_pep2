@@ -1,12 +1,12 @@
-package com.tingeso.marcasrelojservice.services;
+package com.tingeso.subirdataservice.services;
 
-import com.tingeso.marcasrelojservice.entities.SubirDataEntity;
+import com.tingeso.subirdataservice.entities.SubirDataEntity;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
-import com.tingeso.marcasrelojservice.repositories.SubirDataRepository;
+import com.tingeso.subirdataservice.repositories.SubirDataRepository;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -15,7 +15,6 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
-import java.util.List;
 
 @Service
 public class SubirDataService {
