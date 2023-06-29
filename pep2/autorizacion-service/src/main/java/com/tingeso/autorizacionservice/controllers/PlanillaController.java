@@ -1,13 +1,13 @@
 package com.tingeso.autorizacionservice.controllers;
 
 import com.tingeso.autorizacionservice.entities.PlanillaEntity;
+import com.tingeso.autorizacionservice.repositories.PlanillaRepository;
 import com.tingeso.autorizacionservice.services.PlanillaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.ui.Model;
 
 import java.text.ParseException;
 import java.util.ArrayList;
@@ -20,13 +20,18 @@ public class PlanillaController {
     @Autowired
     private PlanillaService planillaService;
 
-    @GetMapping
-    public ResponseEntity<List<PlanillaEntity>> listarPlanillaCalculo(){
+    @Autowired
+    private PlanillaRepository planillaRepository;
 
-        List<PlanillaEntity> planillas = planillaService.obtenerPlanillas();
-        if(planillas.isEmpty())
+    @GetMapping
+    public ResponseEntity<ArrayList<PlanillaEntity>> planillaDePagos() throws ParseException {
+
+        planillaService.calculoPlanilla();
+        ArrayList<PlanillaEntity> planillaPagos = planillaService.obtenerPlanillas();
+        if(planillaPagos.isEmpty()) {
             return ResponseEntity.noContent().build();
-        return ResponseEntity.ok(planillas);
+        }
+        return ResponseEntity.ok(planillaPagos);
 
     }
 }

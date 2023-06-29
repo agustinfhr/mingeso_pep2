@@ -1,6 +1,8 @@
 import React, {Component, useState} from "react";
-import NavbarComponent2 from "./NavbarComponent2";
+import NavbarComponent4 from "./NavbarComponent4";
 import styled from "styled-components";
+import swal from "sweetalert";
+import Button from "react-bootstrap/Button";
 
 class PlanillaComponent extends Component{
     constructor(props){
@@ -16,10 +18,11 @@ class PlanillaComponent extends Component{
             .then((data) => this.setState({ planillas: data }));
     }
 
+
     render(){
         return(
             <div className="home">
-                <NavbarComponent2 />
+                <NavbarComponent4 />
                 <Styles>
                     <h1 className="text-center"> <b>Listado de planillas</b></h1>
                     <div className="f">
@@ -29,6 +32,19 @@ class PlanillaComponent extends Component{
                                 <th>Quincena</th>
                                 <th>Codigo Proveedor</th>
                                 <th>Nombre Proveedor</th>
+                                <th>TOTAL KLS leche</th>
+                                <th>Pago por Leche</th>
+                                <th>%Grasa</th>
+                                <th>Pago por Grasa</th>
+                                <th>%Solidos Totales</th>
+                                <th>Pago por Solidos Totales</th>
+                                <th>Nro. días que envío leche</th>
+                                <th>Promedio diario KLS leche</th>
+                                <th>%Variación Leche</th>
+                                <th>%Variación Grasa</th>
+                                <th>%Variación ST</th>
+                                <th>Bonificación por Frecuencia</th>
+
                             </tr>
                             </thead>
                             <tbody>
@@ -37,6 +53,19 @@ class PlanillaComponent extends Component{
                                     <td>{planilla.quincena}</td>
                                     <td>{planilla.codigo_proveedor}</td>
                                     <td>{planilla.nombre_proveedor}</td>
+                                    <td>{planilla.total_kls_leche}</td>
+                                    <td>{planilla.pago_por_leche}</td>
+                                    <td>{planilla.pct_grasa}</td>
+                                    <td>{planilla.pago_por_grasa}</td>
+                                    <td>{planilla.pct_solidos_totales}</td>
+                                    <td>{planilla.pago_por_solidos_totales}</td>
+                                    <td>{planilla.nro_dias_envio_leche}</td>
+                                    <td>{planilla.promedio_diario_kls_leche}</td>
+                                    <td>{planilla.pct_variacion_leche}</td>
+                                    <td>{planilla.pct_variacion_grasa}</td>
+                                    <td>{planilla.pct_variacion_st}</td>
+                                    <td>{planilla.bonificacion_frecuencia}</td>
+
 
                                 </tr>
                             ))}

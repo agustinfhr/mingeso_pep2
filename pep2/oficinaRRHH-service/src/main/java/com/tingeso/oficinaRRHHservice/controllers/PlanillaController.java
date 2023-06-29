@@ -30,7 +30,21 @@ public class PlanillaController {
 
     }
 
+    @GetMapping("/lista-planilla")
+    public void listarPlanillaCalculo2() throws ParseException {
 
+        //if (dataRepository.existsAny() && subirValorRepository.existsAny()) {
+        //    System.out.println("\nHay valores!!\n");
+        //    planillaService.calcularPlanillas();
+        //}
+        planillaService.calcularPlanillas();
+        ArrayList<PlanillaEntity> planillas = planillaService.obtenerPlanillas();
+        //model.addAttribute("planillas", planillas);
+        if(planillas.isEmpty()){
+            return ResponseEntity.noContent().build();
+        }
+        return ResponseEntity.ok(planillas);
+    }
 
 
 
