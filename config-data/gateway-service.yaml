@@ -32,8 +32,8 @@ spring:
           uri: lb://justificativo-service
           predicates:
             - Path=/subir-valor/**
-        - id: autorizacion-service
-          uri: lb://autorizacion-service
+        - id: planilla-service
+          uri: lb://planilla-service
           predicates:
             - Path=/planilla-pago/**
         - id: marcas-reloj-service

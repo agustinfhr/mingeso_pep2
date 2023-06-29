@@ -1,10 +1,10 @@
-package com.tingeso.autorizacionservice;
+package com.tingeso.planillaservice;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class AutorizacionServiceApplicationTests {
+class PlanillaServiceApplicationTests {
 
 	@Test
 	void contextLoads() {

@@ -1,4 +1,4 @@
-package com.tingeso.autorizacionservice.models;
+package com.tingeso.planillaservice.models;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -7,8 +7,10 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class SubirValorModel {
+public class SubirDataModel {
+    private String fecha;
+    private String turno;
     private String proveedor;
-    private String pct_grasa;
-    private String pct_solido_total;
+    private String kls_leche;
+
 }

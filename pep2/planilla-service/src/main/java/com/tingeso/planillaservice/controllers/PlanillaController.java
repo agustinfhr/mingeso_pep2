@@ -1,8 +1,8 @@
-package com.tingeso.autorizacionservice.controllers;
+package com.tingeso.planillaservice.controllers;
 
-import com.tingeso.autorizacionservice.entities.PlanillaEntity;
-import com.tingeso.autorizacionservice.repositories.PlanillaRepository;
-import com.tingeso.autorizacionservice.services.PlanillaService;
+import com.tingeso.planillaservice.entities.PlanillaEntity;
+import com.tingeso.planillaservice.repositories.PlanillaRepository;
+import com.tingeso.planillaservice.services.PlanillaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.text.ParseException;
 import java.util.ArrayList;
-import java.util.List;
 
 @RestController
 @RequestMapping("/planilla-pago")

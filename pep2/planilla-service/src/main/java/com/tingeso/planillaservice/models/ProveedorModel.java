@@ -1,4 +1,4 @@
-package com.tingeso.autorizacionservice.models;
+package com.tingeso.planillaservice.models;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

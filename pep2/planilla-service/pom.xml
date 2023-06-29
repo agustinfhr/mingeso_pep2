@@ -9,9 +9,9 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.tingeso</groupId>
-	<artifactId>autorizacion-service</artifactId>
+	<artifactId>planilla-service</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>autorizacion-service</name>
+	<name>planilla-service</name>
 	<description>Eureka Service</description>
 	<properties>
 		<java.version>11</java.version>

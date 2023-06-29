@@ -1,4 +1,4 @@
-package com.tingeso.autorizacionservice.config;
+package com.tingeso.planillaservice.config;
 
 import org.springframework.cloud.client.loadbalancer.LoadBalanced;
 import org.springframework.context.annotation.Bean;

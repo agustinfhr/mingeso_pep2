@@ -1,6 +1,6 @@
-package com.tingeso.autorizacionservice.repositories;
+package com.tingeso.planillaservice.repositories;
 
-import com.tingeso.autorizacionservice.entities.PlanillaEntity;
+import com.tingeso.planillaservice.entities.PlanillaEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
