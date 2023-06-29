@@ -3,7 +3,9 @@ package com.tingeso.autorizacionservice.services;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.tingeso.autorizacionservice.entities.PlanillaEntity;
 
+import com.tingeso.autorizacionservice.models.ProveedorModel;
 import com.tingeso.autorizacionservice.repositories.PlanillaRepository;
+import org.apache.catalina.LifecycleState;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
@@ -12,6 +14,7 @@ import org.springframework.web.client.RestTemplate;
 import java.text.ParseException;
 
 import java.util.ArrayList;
+import java.util.List;
 
 
 @Service
@@ -29,13 +32,33 @@ public class PlanillaService {
         return (ArrayList<PlanillaEntity>) planillaRepository.findAll();
     }
 
+    public ProveedorModel obtenerProveedorPorCodigo(String codigo){
+        ProveedorModel proveedor = restTemplate.getForObject("http://empleado-service/proveedor/" + codigo, ProveedorModel.class);
+        System.out.println(proveedor);
+        return proveedor;
+    }
+    public  List<String> obtenerCodigosData(){
+        List<String> codigosData = restTemplate.getForObject("http://empleado-service/proveedor/codigo", List.class);
+        System.out.println(codigosData);
+        return codigosData;
+    }
 
-    public void calculoPlanilla() {
+    public void reportePlanilla() throws ParseException {
+        planillaRepository.deleteAll();
+        List<String> listaCodigos = obtenerCodigosData();
+        for (String listaCodigo : listaCodigos) {
+            calculoPlanilla(listaCodigo);
+        }
 
+    }
+
+    public void calculoPlanilla(String codigo) throws ParseException {
+
+        ProveedorModel proveedorActual = obtenerProveedorPorCodigo(codigo);
         PlanillaEntity planilla = new PlanillaEntity();
-        planilla.setQuincena("XXX");
-        planilla.setCodigo_proveedor("XXX");
-        planilla.setNombre_proveedor("XXX");
+        planilla.setQuincena(proveedorActual.getCategoria());
+        planilla.setCodigo_proveedor(proveedorActual.getCodigo());
+        planilla.setNombre_proveedor(proveedorActual.getNombre());
         planilla.setTotal_kls_leche(0);
         planilla.setPago_por_leche(0);
         planilla.setPct_grasa(0);
@@ -56,6 +79,7 @@ public class PlanillaService {
         planilla.setMonto_final(0);
 
         planillaRepository.save(planilla);
+
 
 
     }

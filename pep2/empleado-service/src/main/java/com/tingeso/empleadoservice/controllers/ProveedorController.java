@@ -38,5 +38,23 @@ public class ProveedorController {
         return ResponseEntity.ok(proveedor);
     }
 
+    @GetMapping("/codigo")
+    public ResponseEntity<List<String>> obtenerCodigosData(){
+        List<String> codigos = proveedorService.obtenerCodigos();
+        if(codigos.isEmpty()){
+            return ResponseEntity.noContent().build();
+        }
+        return ResponseEntity.ok(codigos);
+    }
+
+    @GetMapping("/{codigo}")
+    public ResponseEntity<ProveedorEntity> obtenerPorCodigo(@PathVariable("codigo") String codigo){
+        ProveedorEntity proveedor = proveedorService.findByCodigo(codigo);
+        if(proveedor == null)
+            return ResponseEntity.notFound().build();
+        return ResponseEntity.ok(proveedor);
+
+    }
+
 
 }

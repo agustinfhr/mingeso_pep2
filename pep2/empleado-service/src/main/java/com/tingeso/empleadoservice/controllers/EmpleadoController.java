@@ -24,6 +24,8 @@ public class EmpleadoController {
             return ResponseEntity.noContent().build();
         return ResponseEntity.ok(empleados);
     }
+
+
     @GetMapping("/{rut}")
     public ResponseEntity<EmpleadoEntity> obtenerPorRut(@PathVariable("rut") String rut){
         EmpleadoEntity empleado = empleadoService.findByRut(rut);

@@ -31,4 +31,12 @@ public class ProveedorService {
         proveedorRepository.save(proveedor);
     }
 
+    public List<String> obtenerCodigos() {
+        return proveedorRepository.findCodigo();
+    }
+
+    public ProveedorEntity findByCodigo(String codigo){
+        return proveedorRepository.findByCodigo(codigo);
+    }
+
 }

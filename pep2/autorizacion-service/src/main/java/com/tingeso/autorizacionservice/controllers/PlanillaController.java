@@ -26,7 +26,7 @@ public class PlanillaController {
     @GetMapping
     public ResponseEntity<ArrayList<PlanillaEntity>> planillaDePagos() throws ParseException {
 
-        planillaService.calculoPlanilla();
+        planillaService.reportePlanilla();
         ArrayList<PlanillaEntity> planillaPagos = planillaService.obtenerPlanillas();
         if(planillaPagos.isEmpty()) {
             return ResponseEntity.noContent().build();
