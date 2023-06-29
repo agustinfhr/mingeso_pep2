@@ -33,12 +33,12 @@ public class PlanillaService {
     }
 
     public ProveedorModel obtenerProveedorPorCodigo(String codigo){
-        ProveedorModel proveedor = restTemplate.getForObject("http://empleado-service/proveedor/" + codigo, ProveedorModel.class);
+        ProveedorModel proveedor = restTemplate.getForObject("http://proveedor-service/proveedor/" + codigo, ProveedorModel.class);
         System.out.println(proveedor);
         return proveedor;
     }
     public  List<String> obtenerCodigosData(){
-        List<String> codigosData = restTemplate.getForObject("http://empleado-service/proveedor/codigo", List.class);
+        List<String> codigosData = restTemplate.getForObject("http://proveedor-service/proveedor/codigo", List.class);
         System.out.println(codigosData);
         return codigosData;
     }

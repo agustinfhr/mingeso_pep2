@@ -1,4 +1,4 @@
-package com.tingeso.empleadoservice.config;
+package com.tingeso.proveedorservice.config;
 
 import org.springframework.cloud.client.loadbalancer.LoadBalanced;
 import org.springframework.context.annotation.Bean;

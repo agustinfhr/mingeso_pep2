@@ -1,10 +1,10 @@
-package com.tingeso.empleadoservice;
+package com.tingeso.proveedorservice;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class EmpleadoServiceApplicationTests {
+class ProveedorServiceApplicationTests {
 
 	@Test
 	void contextLoads() {

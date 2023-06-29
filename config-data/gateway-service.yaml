@@ -24,8 +24,8 @@ spring:
             allowed-headers: "*"
             allow-credentials: true
       routes:
-        - id: empleado-service
-          uri: lb://empleado-service
+        - id: proveedor-service
+          uri: lb://proveedor-service
           predicates:
             - Path=/proveedor/**
         - id: justificativo-service

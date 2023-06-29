@@ -1,17 +1,11 @@
-package com.tingeso.empleadoservice.controllers;
+package com.tingeso.proveedorservice.controllers;
 
-import com.tingeso.empleadoservice.entities.EmpleadoEntity;
-import com.tingeso.empleadoservice.entities.ProveedorEntity;
-import com.tingeso.empleadoservice.reporitories.ProveedorRepository;
-import com.tingeso.empleadoservice.services.EmpleadoService;
-import com.tingeso.empleadoservice.services.ProveedorService;
+import com.tingeso.proveedorservice.entities.ProveedorEntity;
+import com.tingeso.proveedorservice.services.ProveedorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @RestController

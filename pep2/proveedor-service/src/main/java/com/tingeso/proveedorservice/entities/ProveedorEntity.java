@@ -1,4 +1,4 @@
-package com.tingeso.empleadoservice.entities;
+package com.tingeso.proveedorservice.entities;
 
 import com.sun.istack.NotNull;
 import lombok.AllArgsConstructor;
