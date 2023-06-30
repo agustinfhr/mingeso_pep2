@@ -18,6 +18,9 @@ public interface SubirDataRepository extends JpaRepository <SubirDataEntity, Int
     @Query("select e.kls_leche from SubirDataEntity e where e.proveedor = :proveedor order by e.fecha asc")
     List<String> findAllByCodigoOrderByDateAsc(@Param("proveedor") String proveedor);
 
+    @Query("select e.turno from SubirDataEntity e where e.proveedor = :proveedor order by e.fecha asc")
+    List<String> findAllTurnoByCodigoOrderByDateAsc(@Param("proveedor") String proveedor);
+
     @Query("select count(e) > 0 from SubirDataEntity e")
     boolean existsAny();
 }

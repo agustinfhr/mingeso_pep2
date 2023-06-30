@@ -202,6 +202,47 @@ public class PlanillaService {
 
     }
 
+    public int mananaTarde(String codigo){
+
+        Integer turno = 0;
+        List<String> proveedorDatas = restTemplate.getForObject("http://subir-data-service/subir-data/turno/" + codigo, List.class);
+        for (String proveedorData : proveedorDatas) {
+            if (proveedorData.equals("M")) {
+                if (turno == 2) {
+                    return 3;
+                }
+                turno = 1; //manana M
+            } else {
+                if (turno == 1) {
+                    return 3;
+                }
+                turno = 2; //tarde T
+            }
+        }
+        return turno;
+    }
+
+    public int bonificacionFrec(Integer turno, Integer pagoLeche, Integer nroDiasEnvioLeche) {
+
+        if (nroDiasEnvioLeche >= 10) {
+            if (turno == 3) {
+                int bonificacionFrecuencia = (pagoLeche * 20) / 100;
+                return bonificacionFrecuencia;
+            } else if (turno == 1) {
+                int bonificacionFrecuencia = (pagoLeche * 12) / 100;
+                return bonificacionFrecuencia;
+            } else if (turno == 2) {
+                int bonificacionFrecuencia = (pagoLeche * 8) / 100;
+                return bonificacionFrecuencia;
+            } else {
+                return 0;
+            }
+        } else {
+            return 0;
+        }
+
+    }
+
 
     public void calculoPlanilla(String codigo) throws ParseException {
 
@@ -218,9 +259,8 @@ public class PlanillaService {
         int pctVariacionLeche = variacionLeche(codigo, totalKlsLeche);
         int pctVariacionGrasa = variacionGrasa(codigo, pctGrasa);
         int pctVariacionST = variacionST(codigo, pctSolidosTotales);
-        //int manana = 0;
-        //int tarde = 0;
-        //int bonificacionFrecuencia = 0;
+        int turno = mananaTarde(codigo);
+        int bonificacionFrecuencia = bonificacionFrec(turno, pagoLeche, nroDiasEnvioLeche);
         //int pagoAcopioLeche = 0;
         //int dctoVariacionLeche = 0;
         //int dctoVariacionGrasa = 0;
@@ -245,7 +285,7 @@ public class PlanillaService {
         planilla.setPct_variacion_leche(pctVariacionLeche);
         planilla.setPct_variacion_grasa(pctVariacionGrasa);
         planilla.setPct_variacion_st(pctVariacionST);
-        planilla.setBonificacion_frecuencia(0);
+        planilla.setBonificacion_frecuencia(bonificacionFrecuencia);
         planilla.setDcto_variacion_leche(0);
         planilla.setDcto_variacion_grasa(0);
         planilla.setDcto_variacion_st(0);

@@ -37,6 +37,15 @@ public class SubirDataController {
         return ResponseEntity.ok(datas);
     }
 
+    @GetMapping("/turno/{codigo}")
+    public ResponseEntity<List<String>> obtenerTurnosPorCodigo(@PathVariable("codigo") String codigo){
+        List<String> datas = dataRepository.findAllTurnoByCodigoOrderByDateAsc(codigo);
+        if(datas.isEmpty()){
+            return ResponseEntity.noContent().build();
+        }
+        return ResponseEntity.ok(datas);
+    }
+
     @PostMapping
     public String upload(@RequestParam("file") MultipartFile file, RedirectAttributes redirectAttributes) {
         subirData.guardar(file);
