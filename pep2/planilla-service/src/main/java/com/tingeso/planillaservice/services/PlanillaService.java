@@ -5,6 +5,7 @@ import com.tingeso.planillaservice.entities.PlanillaEntity;
 
 import com.tingeso.planillaservice.models.ProveedorModel;
 import com.tingeso.planillaservice.models.SubirDataModel;
+import com.tingeso.planillaservice.models.SubirValorModel;
 import com.tingeso.planillaservice.repositories.PlanillaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -63,17 +64,77 @@ public class PlanillaService {
         return totalKlsLecheResultado;
     }
 
+    public int pagoPorLeche(String categoriaProveedor, Integer klsLecheProveedor){
+
+        switch(categoriaProveedor){
+            case "A":
+                return (klsLecheProveedor * 700);
+            case "B":
+                return (klsLecheProveedor * 550);
+            case "C":
+                return (klsLecheProveedor * 400);
+            case "D":
+                return (klsLecheProveedor * 250);
+            default:
+                return 0;
+        }
+    }
+
+    public int pagoPorGrasa(Integer klsLecheProveedor, String codigo, Integer interruptor){
+
+        int pctGrasa = 0;
+
+        SubirValorModel proveedorValores = restTemplate.getForObject("http://subir-valor-service/subir-valor/" + codigo, SubirValorModel.class);
+        pctGrasa = Integer.parseInt(proveedorValores.getPct_grasa());
+
+        if (interruptor == 1) {
+            return pctGrasa;
+        } else if (pctGrasa >= 0 && pctGrasa <= 20) {
+            return (klsLecheProveedor * 30);
+        } else if (pctGrasa >= 21 && pctGrasa <= 45) {
+            return (klsLecheProveedor * 80);
+        } else if (pctGrasa >= 46) {
+            return (klsLecheProveedor * 120);
+        } else {
+            return 0;
+        }
+    }
+
     public void calculoPlanilla(String codigo) throws ParseException {
 
         ProveedorModel proveedorActual = obtenerProveedorPorCodigo(codigo);
+
+        int totalKlsLeche = klsLeche(codigo);
+        int pagoLeche = pagoPorLeche(proveedorActual.getCategoria(), totalKlsLeche);
+        int pctGrasa = pagoPorGrasa(totalKlsLeche,codigo,1);
+        int pagoGrasa = pagoPorGrasa(totalKlsLeche,codigo,0);
+        //int pctSolidosTotales = 0;
+        //int pagoSolidosTotales = 0;
+        //int nroDiasEnvioLeche = 0;
+        //int promDiarioKlsLeche = 0;
+        //int pctVariacionLeche = 0;
+        //int pctVariacionGrasa = 0;
+        //int pctVariacionST = 0;
+        //int manana = 0;
+        //int tarde = 0;
+        //int bonificacionFrecuencia = 0;
+        //int pagoAcopioLeche = 0;
+        //int dctoVariacionLeche = 0;
+        //int dctoVariacionGrasa = 0;
+        //int dctoVariacionST = 0;
+        //int descuentos = 0;
+        //int pagoTotal = 0;
+        //int montoRetencion = 0;
+        //int montoFinal = 0;
+
         PlanillaEntity planilla = new PlanillaEntity();
         planilla.setQuincena(proveedorActual.getCategoria());
         planilla.setCodigo_proveedor(proveedorActual.getCodigo());
         planilla.setNombre_proveedor(proveedorActual.getNombre());
-        planilla.setTotal_kls_leche(klsLeche(codigo));
-        planilla.setPago_por_leche(0);
-        planilla.setPct_grasa(0);
-        planilla.setPago_por_grasa(0);
+        planilla.setTotal_kls_leche(totalKlsLeche);
+        planilla.setPago_por_leche(pagoLeche);
+        planilla.setPct_grasa(pctGrasa);
+        planilla.setPago_por_grasa(pagoGrasa);
         planilla.setPct_solidos_totales(0);
         planilla.setPago_por_solidos_totales(0);
         planilla.setNro_dias_envio_leche(0);

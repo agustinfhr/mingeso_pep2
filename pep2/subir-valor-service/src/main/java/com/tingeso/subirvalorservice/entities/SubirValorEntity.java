@@ -21,4 +21,5 @@ public class SubirValorEntity {
     private String pct_grasa;
     private String pct_solido_total;
 
+
 }
