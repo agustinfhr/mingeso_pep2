@@ -1,8 +1,8 @@
-package com.tingeso.justificativoservice.controllers;
+package com.tingeso.subirvalorservice.controllers;
 
-import com.tingeso.justificativoservice.entities.SubirValorEntity;
-import com.tingeso.justificativoservice.repositories.SubirValorRepository;
-import com.tingeso.justificativoservice.services.SubirValorService;
+import com.tingeso.subirvalorservice.entities.SubirValorEntity;
+import com.tingeso.subirvalorservice.repositories.SubirValorRepository;
+import com.tingeso.subirvalorservice.services.SubirValorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

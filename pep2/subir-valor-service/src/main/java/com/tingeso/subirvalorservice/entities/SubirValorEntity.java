@@ -1,4 +1,4 @@
-package com.tingeso.justificativoservice.entities;
+package com.tingeso.subirvalorservice.entities;
 
 import com.sun.istack.NotNull;
 import lombok.AllArgsConstructor;

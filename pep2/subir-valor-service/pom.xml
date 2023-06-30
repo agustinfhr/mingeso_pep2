@@ -9,9 +9,9 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.tingeso</groupId>
-	<artifactId>justificativo-service</artifactId>
+	<artifactId>subir-valor-service</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>justificativo-service</name>
+	<name>subir-valor-service</name>
 	<description>Eureka Service</description>
 	<properties>
 		<java.version>11</java.version>
