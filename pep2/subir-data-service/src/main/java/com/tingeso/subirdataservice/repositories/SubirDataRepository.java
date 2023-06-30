@@ -7,6 +7,7 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
+import java.util.List;
 
 @Repository
 public interface SubirDataRepository extends JpaRepository <SubirDataEntity, Integer>{
@@ -14,8 +15,8 @@ public interface SubirDataRepository extends JpaRepository <SubirDataEntity, Int
     @Query("select e from SubirDataEntity e order by e.fecha asc")
     ArrayList<SubirDataEntity> findAllOrderByDateAsc();
 
-    @Query("select e from SubirDataEntity e where e.proveedor = :proveedor order by e.fecha asc")
-    ArrayList<SubirDataEntity> findAllByCodigoOrderByDateAsc(@Param("proveedor") String proveedor);
+    @Query("select e.kls_leche from SubirDataEntity e where e.proveedor = :proveedor order by e.fecha asc")
+    List<String> findAllByCodigoOrderByDateAsc(@Param("proveedor") String proveedor);
 
     @Query("select count(e) > 0 from SubirDataEntity e")
     boolean existsAny();

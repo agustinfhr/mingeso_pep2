@@ -11,6 +11,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.ui.Model;
 
 import java.util.ArrayList;
+import java.util.List;
 
 @RestController
 @RequestMapping("/subir-data")
@@ -28,8 +29,11 @@ public class SubirDataController {
     }
 
     @GetMapping("/{codigo}")
-    public ResponseEntity<ArrayList<SubirDataEntity>> obtenerPorCodigo(@PathVariable("codigo") String codigo){
-        ArrayList<SubirDataEntity> datas = dataRepository.findAllByCodigoOrderByDateAsc(codigo);
+    public ResponseEntity<List<String>> obtenerPorCodigo(@PathVariable("codigo") String codigo){
+        List<String> datas = dataRepository.findAllByCodigoOrderByDateAsc(codigo);
+        if(datas.isEmpty()){
+            return ResponseEntity.noContent().build();
+        }
         return ResponseEntity.ok(datas);
     }
 

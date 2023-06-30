@@ -15,6 +15,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.List;
 
 @Service
 public class SubirDataService {
@@ -29,6 +30,11 @@ public class SubirDataService {
     public ArrayList<SubirDataEntity> obtenerData(){
         ArrayList<SubirDataEntity> datasByDateAsc = dataRepository.findAllOrderByDateAsc();
         return datasByDateAsc;
+    }
+
+    public List<String> findAllByCodigoOrderByDateAsc(String codigo){
+        List<String> datasByCodigo = dataRepository.findAllByCodigoOrderByDateAsc(codigo);
+        return datasByCodigo;
     }
 
 

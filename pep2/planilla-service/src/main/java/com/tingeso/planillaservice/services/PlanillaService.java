@@ -4,6 +4,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.tingeso.planillaservice.entities.PlanillaEntity;
 
 import com.tingeso.planillaservice.models.ProveedorModel;
+import com.tingeso.planillaservice.models.SubirDataModel;
 import com.tingeso.planillaservice.repositories.PlanillaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -51,6 +52,17 @@ public class PlanillaService {
 
     }
 
+    public int klsLeche(String codigo){
+
+        Integer totalKlsLecheResultado = 0;
+        List<String> proveedorDatas = restTemplate.getForObject("http://subir-data-service/subir-data/" + codigo, List.class);
+        for (String proovedorData : proveedorDatas) {
+            totalKlsLecheResultado = totalKlsLecheResultado + Integer.parseInt(proovedorData);
+        }
+
+        return totalKlsLecheResultado;
+    }
+
     public void calculoPlanilla(String codigo) throws ParseException {
 
         ProveedorModel proveedorActual = obtenerProveedorPorCodigo(codigo);
@@ -58,7 +70,7 @@ public class PlanillaService {
         planilla.setQuincena(proveedorActual.getCategoria());
         planilla.setCodigo_proveedor(proveedorActual.getCodigo());
         planilla.setNombre_proveedor(proveedorActual.getNombre());
-        planilla.setTotal_kls_leche(0);
+        planilla.setTotal_kls_leche(klsLeche(codigo));
         planilla.setPago_por_leche(0);
         planilla.setPct_grasa(0);
         planilla.setPago_por_grasa(0);

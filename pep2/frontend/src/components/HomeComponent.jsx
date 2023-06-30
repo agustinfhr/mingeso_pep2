@@ -11,15 +11,6 @@ export default function Home(){
             <HomeStyle>
                 <h1 className="text-center"> <b>MueblesStgo</b></h1>
                 <div class="box-area">
-                    <div class="single-box">
-                        <a href="/subir-archivo">
-                            <div class="img-area">
-                            </div>
-                        </a>
-                        <div class="img-text">
-                            <span class="header-text"><strong>Cargar DATA.txt</strong></span>
-                        </div>
-                    </div>
                     <div className="single-box">
                         <a href="/subir-archivo">
                             <div className="img-area">
@@ -38,13 +29,12 @@ export default function Home(){
                             <span className="header-text"><strong>Proveedores</strong></span>
                         </div>
                     </div>
-                    <div class="single-box">
-                        <a href="/lista-empleados">
-                            <div class="img-area">
-                            </div>
+                    <div className="single-box">
+                        <a href="/nuevo-proveedor">
+                            <div className="img-area"></div>
                         </a>
-                        <div class="img-text">
-                            <span class="header-text"><strong>Ver empleados</strong></span>
+                        <div className="img-text">
+                            <span className="header-text"><strong>Ingresar proveedor</strong></span>
                         </div>
                     </div>
                     <div class="single-box">
@@ -62,22 +52,6 @@ export default function Home(){
                         </a>
                         <div class="img-text">
                             <span class="header-text"><strong>Cargar Valores</strong></span>
-                        </div>
-                    </div>
-                    <div className="single-box">
-                        <a href="/nuevo-proveedor">
-                            <div className="img-area"></div>
-                        </a>
-                        <div className="img-text">
-                            <span className="header-text"><strong>Ingresar proveedor</strong></span>
-                        </div>
-                    </div>
-                    <div class="single-box">
-                        <a href="/autorizacion">
-                            <div class="img-area"></div>
-                        </a>
-                        <div class="img-text">
-                            <span class="header-text"><strong>Ingresar autorizaciones</strong></span>
                         </div>
                     </div>
                 </div>
