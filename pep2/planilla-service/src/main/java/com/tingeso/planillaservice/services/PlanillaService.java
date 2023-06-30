@@ -122,6 +122,25 @@ public class PlanillaService {
         }
     }
 
+    public int totalNroDiasLeche(String codigo){
+
+        Integer totalNroDiasResultado = 0;
+        List<String> proveedorDatas = restTemplate.getForObject("http://subir-data-service/subir-data/" + codigo, List.class);
+        for (String proovedorData : proveedorDatas) {
+            totalNroDiasResultado = totalNroDiasResultado + 1;
+        }
+
+        return totalNroDiasResultado;
+    }
+
+    public int promklsLeche(Integer totalKlsLeche, Integer nroDiasEnvioLeche){
+
+        int promedio = 0;
+        promedio = totalKlsLeche / nroDiasEnvioLeche;
+        return promedio;
+    }
+
+
     public void calculoPlanilla(String codigo) throws ParseException {
 
         ProveedorModel proveedorActual = obtenerProveedorPorCodigo(codigo);
@@ -132,8 +151,8 @@ public class PlanillaService {
         int pagoGrasa = pagoPorGrasa(totalKlsLeche,codigo,0);
         int pctSolidosTotales = pagoPorST(totalKlsLeche,codigo,1);
         int pagoSolidosTotales = pagoPorST(totalKlsLeche,codigo,0);
-        //int nroDiasEnvioLeche = 0;
-        //int promDiarioKlsLeche = 0;
+        int nroDiasEnvioLeche = totalNroDiasLeche(codigo);
+        int promDiarioKlsLeche = promklsLeche(totalKlsLeche,nroDiasEnvioLeche);
         //int pctVariacionLeche = 0;
         //int pctVariacionGrasa = 0;
         //int pctVariacionST = 0;
@@ -159,8 +178,8 @@ public class PlanillaService {
         planilla.setPago_por_grasa(pagoGrasa);
         planilla.setPct_solidos_totales(pctSolidosTotales);
         planilla.setPago_por_solidos_totales(pagoSolidosTotales);
-        planilla.setNro_dias_envio_leche(0);
-        planilla.setPromedio_diario_kls_leche(0);
+        planilla.setNro_dias_envio_leche(nroDiasEnvioLeche);
+        planilla.setPromedio_diario_kls_leche(promDiarioKlsLeche);
         planilla.setPct_variacion_leche(0);
         planilla.setPct_variacion_grasa(0);
         planilla.setPct_variacion_st(0);
