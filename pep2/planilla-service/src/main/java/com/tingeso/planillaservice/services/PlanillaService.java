@@ -100,6 +100,28 @@ public class PlanillaService {
         }
     }
 
+    public int pagoPorST(Integer klsLecheProveedor, String codigo, Integer interruptor){
+
+        int pctST = 0;
+
+        SubirValorModel proveedorValores = restTemplate.getForObject("http://subir-valor-service/subir-valor/" + codigo, SubirValorModel.class);
+        pctST = Integer.parseInt(proveedorValores.getPct_solido_total());
+
+        if (interruptor == 1) {
+            return pctST;
+        } else if (pctST >= 0 && pctST <= 7) {
+            return (klsLecheProveedor * -130);
+        } else if (pctST >= 8 && pctST <= 18) {
+            return (klsLecheProveedor * -90);
+        } else if (pctST >= 19 && pctST <= 35) {
+            return (klsLecheProveedor * 95);
+        } else if (pctST >= 36) {
+            return (klsLecheProveedor * 150);
+        } else {
+            return 0;
+        }
+    }
+
     public void calculoPlanilla(String codigo) throws ParseException {
 
         ProveedorModel proveedorActual = obtenerProveedorPorCodigo(codigo);
@@ -108,8 +130,8 @@ public class PlanillaService {
         int pagoLeche = pagoPorLeche(proveedorActual.getCategoria(), totalKlsLeche);
         int pctGrasa = pagoPorGrasa(totalKlsLeche,codigo,1);
         int pagoGrasa = pagoPorGrasa(totalKlsLeche,codigo,0);
-        //int pctSolidosTotales = 0;
-        //int pagoSolidosTotales = 0;
+        int pctSolidosTotales = pagoPorST(totalKlsLeche,codigo,1);
+        int pagoSolidosTotales = pagoPorST(totalKlsLeche,codigo,0);
         //int nroDiasEnvioLeche = 0;
         //int promDiarioKlsLeche = 0;
         //int pctVariacionLeche = 0;
@@ -135,8 +157,8 @@ public class PlanillaService {
         planilla.setPago_por_leche(pagoLeche);
         planilla.setPct_grasa(pctGrasa);
         planilla.setPago_por_grasa(pagoGrasa);
-        planilla.setPct_solidos_totales(0);
-        planilla.setPago_por_solidos_totales(0);
+        planilla.setPct_solidos_totales(pctSolidosTotales);
+        planilla.setPago_por_solidos_totales(pagoSolidosTotales);
         planilla.setNro_dias_envio_leche(0);
         planilla.setPromedio_diario_kls_leche(0);
         planilla.setPct_variacion_leche(0);
