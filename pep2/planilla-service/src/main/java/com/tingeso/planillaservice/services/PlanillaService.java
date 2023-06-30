@@ -140,6 +140,68 @@ public class PlanillaService {
         return promedio;
     }
 
+    public int variacionLeche(String codigo, Integer totalKlsLeche){
+
+        Integer variacionLecheAnterior = 0;
+
+        if (planillaRepository.existsAny(codigo)) {
+            ArrayList<PlanillaEntity> planillas = planillaRepository.findByCodigo_proveedorOrderByQuincenaDesc(codigo);
+            PlanillaEntity firstPlanilla = planillas.get(0);
+            variacionLecheAnterior = firstPlanilla.getTotal_kls_leche();
+        }
+
+        if (variacionLecheAnterior == 0) {
+            return 0;
+        } else {
+            int pctVariacionLeche = ((totalKlsLeche * 100) / variacionLecheAnterior) - 100;
+
+            return pctVariacionLeche;
+        }
+
+
+    }
+
+    public int variacionGrasa(String codigo, Integer pctGrasa){
+
+        Integer variacionGrasaAnterior = 0;
+
+        if (planillaRepository.existsAny(codigo)) {
+            ArrayList<PlanillaEntity> planillas = planillaRepository.findByCodigo_proveedorOrderByQuincenaDesc(codigo);
+            PlanillaEntity firstPlanilla = planillas.get(0);
+            variacionGrasaAnterior = firstPlanilla.getPct_grasa();
+        }
+
+        if (variacionGrasaAnterior == 0) {
+            return 0;
+        } else {
+            int pctVariacionGrasa = ((pctGrasa * 100) / variacionGrasaAnterior) - 100;
+
+            return pctVariacionGrasa;
+        }
+
+    }
+
+    public int variacionST(String codigo, Integer pctSolidosTotales){
+
+        Integer variacionSolidosTotalesAnterior = 0;
+
+        if (planillaRepository.existsAny(codigo)) {
+            ArrayList<PlanillaEntity> planillas = planillaRepository.findByCodigo_proveedorOrderByQuincenaDesc(codigo);
+            PlanillaEntity firstPlanilla = planillas.get(0);
+            variacionSolidosTotalesAnterior = firstPlanilla.getPct_solidos_totales();
+        }
+
+        if (variacionSolidosTotalesAnterior == 0) {
+            return 0;
+        } else {
+            int pctVariacionST = ((pctSolidosTotales * 100) / variacionSolidosTotalesAnterior) - 100;
+
+            return pctVariacionST;
+        }
+
+
+    }
+
 
     public void calculoPlanilla(String codigo) throws ParseException {
 
@@ -153,9 +215,9 @@ public class PlanillaService {
         int pagoSolidosTotales = pagoPorST(totalKlsLeche,codigo,0);
         int nroDiasEnvioLeche = totalNroDiasLeche(codigo);
         int promDiarioKlsLeche = promklsLeche(totalKlsLeche,nroDiasEnvioLeche);
-        //int pctVariacionLeche = 0;
-        //int pctVariacionGrasa = 0;
-        //int pctVariacionST = 0;
+        int pctVariacionLeche = variacionLeche(codigo, totalKlsLeche);
+        int pctVariacionGrasa = variacionGrasa(codigo, pctGrasa);
+        int pctVariacionST = variacionST(codigo, pctSolidosTotales);
         //int manana = 0;
         //int tarde = 0;
         //int bonificacionFrecuencia = 0;
@@ -180,9 +242,9 @@ public class PlanillaService {
         planilla.setPago_por_solidos_totales(pagoSolidosTotales);
         planilla.setNro_dias_envio_leche(nroDiasEnvioLeche);
         planilla.setPromedio_diario_kls_leche(promDiarioKlsLeche);
-        planilla.setPct_variacion_leche(0);
-        planilla.setPct_variacion_grasa(0);
-        planilla.setPct_variacion_st(0);
+        planilla.setPct_variacion_leche(pctVariacionLeche);
+        planilla.setPct_variacion_grasa(pctVariacionGrasa);
+        planilla.setPct_variacion_st(pctVariacionST);
         planilla.setBonificacion_frecuencia(0);
         planilla.setDcto_variacion_leche(0);
         planilla.setDcto_variacion_grasa(0);
