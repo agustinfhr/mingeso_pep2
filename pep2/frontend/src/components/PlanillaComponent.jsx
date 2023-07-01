@@ -44,6 +44,12 @@ class PlanillaComponent extends Component{
                                 <th>%Variación Grasa</th>
                                 <th>%Variación ST</th>
                                 <th>Bonificación por Frecuencia</th>
+                                <th>Dcto. Variación Leche</th>
+                                <th>Dcto. Variación Grasa</th>
+                                <th>Dcto. Variación ST</th>
+                                <th>Pago TOTAL</th>
+                                <th>Monto Retención</th>
+                                <th>Monto FINAL</th>
 
                             </tr>
                             </thead>
@@ -65,6 +71,12 @@ class PlanillaComponent extends Component{
                                     <td>{planilla.pct_variacion_grasa}</td>
                                     <td>{planilla.pct_variacion_st}</td>
                                     <td>{planilla.bonificacion_frecuencia}</td>
+                                    <td>{planilla.dcto_variacion_leche}</td>
+                                    <td>{planilla.dcto_variacion_grasa}</td>
+                                    <td>{planilla.dcto_variacion_st}</td>
+                                    <td>{planilla.pago_total}</td>
+                                    <td>{planilla.monto_retencion}</td>
+                                    <td>{planilla.monto_final}</td>
 
 
                                 </tr>

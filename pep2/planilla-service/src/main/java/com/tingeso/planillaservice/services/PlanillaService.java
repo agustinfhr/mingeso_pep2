@@ -14,6 +14,8 @@ import org.springframework.web.client.RestTemplate;
 
 import java.text.ParseException;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -32,6 +34,7 @@ public class PlanillaService {
     public ArrayList<PlanillaEntity> obtenerPlanillas(){
         return (ArrayList<PlanillaEntity>) planillaRepository.findAll();
     }
+
 
     public ProveedorModel obtenerProveedorPorCodigo(String codigo){
         ProveedorModel proveedor = restTemplate.getForObject("http://proveedor-service/proveedor/" + codigo, ProveedorModel.class);
@@ -63,7 +66,24 @@ public class PlanillaService {
 
         return totalKlsLecheResultado;
     }
+    /*
+    public String calculoFechaQuincena(String codigo) {
+        List<String> proveedorData = restTemplate.getForObject("http://subir-data-service/subir-data/fecha/" + codigo, List.class);
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        LocalDate localDate = LocalDate.parse(proveedorData.get(0), formatter);
+        int dd = localDate.getDayOfMonth();
+        //int mm = localDate.getMonthValue();
+        //int yyyy = localDate.getYear();
 
+        if (dd <= 15) {
+            return String.valueOf(15);
+
+        } else {
+            return String.valueOf(31);
+        }
+    }
+
+    */
     public int pagoPorLeche(String categoriaProveedor, Integer klsLecheProveedor){
 
         switch(categoriaProveedor){
@@ -243,11 +263,92 @@ public class PlanillaService {
 
     }
 
+    public int variacionNegativaLeche(Integer pctVariacionLeche, Integer pagoAcopioLeche){
+
+        if (pctVariacionLeche >= -8) {
+            int dctoVariacionLeche = 0;
+            return dctoVariacionLeche;
+        } else if (pctVariacionLeche >= -25 && pctVariacionLeche <= -9) {
+            int dctoVariacionLeche = (pagoAcopioLeche * 7) / 100;
+            return dctoVariacionLeche;
+        } else if (pctVariacionLeche >= -45 && pctVariacionLeche <= -26) {
+            int dctoVariacionLeche = (pagoAcopioLeche * 15) / 100;
+            return dctoVariacionLeche;
+        } else if (pctVariacionLeche <= -46) {
+            int dctoVariacionLeche = (pagoAcopioLeche * 30) / 100;
+            return dctoVariacionLeche;
+        } else {
+            return 0;
+        }
+
+    }
+
+    public int variacionNegativaGrasa(Integer pctVariacionGrasa, Integer pagoAcopioLeche){
+
+        if (pctVariacionGrasa >= -15) {
+            int dctoVariacionGrasa = 0;
+            return dctoVariacionGrasa;
+        } else if (pctVariacionGrasa >= -25 && pctVariacionGrasa <= -16) {
+            int dctoVariacionGrasa = (pagoAcopioLeche * 7) / 100;
+            return dctoVariacionGrasa;
+        } else if (pctVariacionGrasa >= -40 && pctVariacionGrasa <= -26) {
+            int dctoVariacionGrasa = (pagoAcopioLeche * 15) / 100;
+            return dctoVariacionGrasa;
+        } else if (pctVariacionGrasa <= -41) {
+            int dctoVariacionGrasa = (pagoAcopioLeche * 30) / 100;
+            return dctoVariacionGrasa;
+        } else {
+            return 0;
+        }
+    }
+
+
+    public int variacionNegativaST(Integer pctVariacionST, Integer pagoAcopioLeche){
+
+        if (pctVariacionST >= -6) {
+
+            return 0;
+        } else if (pctVariacionST >= -12 && pctVariacionST <= -7) {
+
+            return ((pagoAcopioLeche * 7) / 100);
+        } else if (pctVariacionST >= -35 && pctVariacionST <= -13) {
+
+            return ((pagoAcopioLeche * 15) / 100);
+        } else if (pctVariacionST <= -36) {
+
+            return ((pagoAcopioLeche * 30) / 100);
+        } else {
+
+            return 0;
+        }
+
+    }
+
+
+    public int impuestoRetencion(String retencion, Integer pagoTotal){
+
+        if (retencion.equals("Si")) {
+
+            if (pagoTotal >= 950000) {
+
+                return ((pagoTotal * 13) / 100);
+            } else {
+
+                return 0;
+            }
+        } else {
+
+            return 0;
+        }
+
+    }
+
 
     public void calculoPlanilla(String codigo) throws ParseException {
 
         ProveedorModel proveedorActual = obtenerProveedorPorCodigo(codigo);
 
+        //String quincena = "15";
         int totalKlsLeche = klsLeche(codigo);
         int pagoLeche = pagoPorLeche(proveedorActual.getCategoria(), totalKlsLeche);
         int pctGrasa = pagoPorGrasa(totalKlsLeche,codigo,1);
@@ -261,14 +362,14 @@ public class PlanillaService {
         int pctVariacionST = variacionST(codigo, pctSolidosTotales);
         int turno = mananaTarde(codigo);
         int bonificacionFrecuencia = bonificacionFrec(turno, pagoLeche, nroDiasEnvioLeche);
-        //int pagoAcopioLeche = 0;
-        //int dctoVariacionLeche = 0;
-        //int dctoVariacionGrasa = 0;
-        //int dctoVariacionST = 0;
-        //int descuentos = 0;
-        //int pagoTotal = 0;
-        //int montoRetencion = 0;
-        //int montoFinal = 0;
+        int pagoAcopioLeche = pagoLeche + pagoGrasa + pagoSolidosTotales + bonificacionFrecuencia;
+        int dctoVariacionLeche = variacionNegativaLeche(pctVariacionLeche, pagoAcopioLeche);
+        int dctoVariacionGrasa = variacionNegativaGrasa(pctVariacionGrasa, pagoAcopioLeche);
+        int dctoVariacionST = variacionNegativaST(pctVariacionST, pagoAcopioLeche);
+        int descuentos = dctoVariacionLeche + dctoVariacionGrasa + dctoVariacionST;
+        int pagoTotal = pagoAcopioLeche - descuentos;
+        int montoRetencion = impuestoRetencion(proveedorActual.getRetencion(), pagoTotal);
+        int montoFinal = pagoTotal - montoRetencion;
 
         PlanillaEntity planilla = new PlanillaEntity();
         planilla.setQuincena(proveedorActual.getCategoria());
@@ -286,12 +387,12 @@ public class PlanillaService {
         planilla.setPct_variacion_grasa(pctVariacionGrasa);
         planilla.setPct_variacion_st(pctVariacionST);
         planilla.setBonificacion_frecuencia(bonificacionFrecuencia);
-        planilla.setDcto_variacion_leche(0);
-        planilla.setDcto_variacion_grasa(0);
-        planilla.setDcto_variacion_st(0);
-        planilla.setPago_total(0);
-        planilla.setMonto_retencion(0);
-        planilla.setMonto_final(0);
+        planilla.setDcto_variacion_leche(dctoVariacionLeche);
+        planilla.setDcto_variacion_grasa(dctoVariacionGrasa);
+        planilla.setDcto_variacion_st(dctoVariacionST);
+        planilla.setPago_total(pagoTotal);
+        planilla.setMonto_retencion(montoRetencion);
+        planilla.setMonto_final(montoFinal);
 
         planillaRepository.save(planilla);
 
