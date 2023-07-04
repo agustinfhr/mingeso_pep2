@@ -7,12 +7,12 @@ function NavbarComponent2(){
         <NavStyle>
             <header class="header">
                 <div class="logo">
-                    <h1>MueblesStgo</h1>
+                    <h1>MilkStgo</h1>
                 </div>
                 <nav>
                 </nav>
                 <a class="btn" href="/"><button>Volver al menú principal</button></a>
-                <a class="btn-2" href="/subir-archivo"><button>Cargar un nuevo Data.txt</button></a>
+                <a class="btn-2" href="/valor-information"><button>Ver el último Valores.csv cargado</button></a>
             </header>
             </NavStyle>
         </>
@@ -23,18 +23,18 @@ export default NavbarComponent2;
 
 
 const NavStyle = styled.nav`
-.header{
-    background-color: #1b3039;
+  .header{
+    background-color: #ffffff;
     display: flex;
     justify-content: flex-end;
     align-items: center;
     height: 85px;
     padding: 5px 10%;
   }
-.header .logo{
+  .header .logo{
     margin-right: auto;
-    color: white;
-    font-family: 'Pacifico',serif;
+    color: #2a3944;
+    font-family: 'Helvetica',cursive;
   }
 .header .btn button{
     margin-left: 20px;
@@ -47,9 +47,9 @@ const NavStyle = styled.nav`
     cursor: pointer;
     transition: all 0.3s ease 0s;
   }
-.header .btn button:hover{
-    background-color: #e2f1f8;
-    color: #ffbc0e;
+  .header .btn button:hover{
+    background-color: #377bbd;
+    color: #f6f6f6;
     transform: scale(1.1);
   }
 .header .btn-2 button {
@@ -63,9 +63,9 @@ const NavStyle = styled.nav`
     cursor: pointer;
     transition: all 0.3s ease 0s;
   }
-.header .btn-2 button:hover{
-    background-color: #e2f1f8;
-    color: #ffbc0e;
+  .header .btn-2 button:hover{
+    background-color: #377bbd;
+    color: #f6f6f6;
     transform: scale(1.1);
-}
+  }
 `

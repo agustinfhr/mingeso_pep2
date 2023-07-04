@@ -11,6 +11,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.ui.Model;
 
 import java.util.ArrayList;
+import java.util.List;
 
 @RestController
 @RequestMapping("/subir-valor")
@@ -21,6 +22,14 @@ public class SubirValorController {
 
     @Autowired
     private SubirValorRepository valorRepository;
+
+    @GetMapping
+    public ResponseEntity<List<SubirValorEntity>> obtenerValores(){
+        List<SubirValorEntity> valores = subirValor.obtenerValor();
+        if(valores.isEmpty())
+            return ResponseEntity.noContent().build();
+        return ResponseEntity.ok(valores);
+    }
 
     @GetMapping("/fileValorUpload")
     public String main() {

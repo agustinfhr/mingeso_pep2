@@ -5,6 +5,7 @@ import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import swal from 'sweetalert';
 import NuevoProveedorService from "../services/NuevoProveedorService";
+import { createGlobalStyle } from 'styled-components'
 
 export default function NuevoProveedorComponent(props){
 
@@ -39,7 +40,7 @@ export default function NuevoProveedorComponent(props){
         e.preventDefault();
         swal({
             title: "¿Está seguro de que desea ingresar este Proveedor?",
-            text: "Una vez enviado, no podrá ser modificado. El empleado quedará JUSTIFICADO de su ausencia en la FECHA indicada.",
+            text: " ",
             icon: "warning",
             buttons: ["Cancelar", "Enviar"],
             dangerMode: true
@@ -68,6 +69,7 @@ export default function NuevoProveedorComponent(props){
         <Styles>
             <div className="home">
                 <NavbarComponent3 />
+                <GlobalStyle />
                 <div className="mainclass">
                     <div className="form1">
                         <h1 className="text-center"><b>Proveedores</b></h1>
@@ -107,6 +109,17 @@ export default function NuevoProveedorComponent(props){
 }
 
 
+const GlobalStyle = createGlobalStyle`
+
+  body {
+    min-height: 100vh;
+    margin: 0;
+    background-image: linear-gradient(to bottom, #e0e8ff, #5d8ec2);
+  }
+
+`
+
+
 const Styles = styled.div`
 
 .text-center {
@@ -125,11 +138,7 @@ const Styles = styled.div`
     text-transform: uppercase;
 }
 
-.home{
-    background-color: #006992;
-    margin: 0;
-    padding: 0;
-}
+
 
 .mainclass{
     margin-top: 20px;
@@ -140,8 +149,8 @@ const Styles = styled.div`
 }
 
 .form1{
-    border: 9px solid #CED0CE;
-    background-color: #DADDD8;
+  border: 6px solid #f1f1f1;
+  background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0.34), rgba(255, 255, 255, 0.28));
     width: 50%;
     padding: 36px;
 }
@@ -156,7 +165,7 @@ input[type=rut], input[type=fecha] {
 }
 
 Button {
-    background-color: #42bfbb;
+    background-color: #377bbd;
     color: white;
     padding: 14px 0;
     margin: 10px 0;

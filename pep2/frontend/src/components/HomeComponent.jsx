@@ -1,6 +1,10 @@
 import React, { Component } from "react";
 import styled from "styled-components";
 import { createGlobalStyle } from 'styled-components'
+import wallpaper from './assets/wallpaper.png';
+
+
+
 
 
 export default function Home(){
@@ -9,7 +13,9 @@ export default function Home(){
         <div>
             <GlobalStyle />
             <HomeStyle>
-                <h1 className="text-center"> <b>MueblesStgo</b></h1>
+                <div className="img-container text-center">
+                    <img src={wallpaper} alt="Descripción de la imagen" className="mx-auto d-block custom-image"/>
+                </div>
                 <div class="box-area">
                     <div className="single-box">
                         <a href="/subir-archivo">
@@ -61,13 +67,64 @@ export default function Home(){
 }
 
 
+const NavBar = styled.div`
+  @import url('https://fonts.googleapis.com/css2?family=Fugaz+One&display=swap');
+  background-color: #ffffff;
+  padding: 2rem;
+
+  .nav-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .d-flex {
+    display: flex;
+    align-items: center;
+  }
+
+  span {
+    font-family: 'Fugaz One', cursive;
+    font-size: 32px;
+  }
+
+  a {
+    color: #1b3039;
+    text-decoration: none;
+  }
+`;
+
+
+
 
 const GlobalStyle = createGlobalStyle`
+      .custom-image {
+        max-width: 60%; /* Ajusta este valor para cambiar el tamaño de la imagen */
+      }
+      .box-area{
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+      }
     body {
-      background-color: #262626;
+      height: 100%;
+      margin: 0;
+      background-image: linear-gradient(to bottom, #e0e8ff, #5d8ec2);
     }
 `
 const HomeStyle = styled.nav`
+  
+  .img-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px 0; // este padding añade espacio encima y debajo de la imagen, ajusta como necesites
+  }
+
+  .custom-image {
+    max-width: 60%; // ajusta este valor para cambiar el tamaño de la imagen
+  }
 
 .text-center {
     text-align: center;
@@ -128,7 +185,7 @@ const HomeStyle = styled.nav`
     line-height: 30px;
 }
 .single-box:hover{
-    background: #e84393;
+    background: #377bbd;
     color: #fff;}
 
 .single-box:nth-child(2) .img-area{

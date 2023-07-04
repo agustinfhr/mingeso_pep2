@@ -23,6 +23,14 @@ public class SubirDataController {
     @Autowired
     private SubirDataRepository dataRepository;
 
+    @GetMapping
+    public ResponseEntity<List<SubirDataEntity>> obtenerDatas(){
+        List<SubirDataEntity> datas = subirData.obtenerData();
+        if(datas.isEmpty())
+            return ResponseEntity.noContent().build();
+        return ResponseEntity.ok(datas);
+    }
+
     @GetMapping("/fileUpload")
     public String main() {
         return "fileUpload";

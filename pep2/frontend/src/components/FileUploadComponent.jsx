@@ -7,6 +7,7 @@ import NavbarComponent from "./NavbarComponent";
 import FileUploadService from "../services/FileUploadService";
 import styled from "styled-components";
 import swal from 'sweetalert';
+import { createGlobalStyle } from 'styled-components'
 
 class FileUploadComponent extends Component{
   constructor(props) {
@@ -23,8 +24,8 @@ class FileUploadComponent extends Component{
   
   onFileUpload = () => {
     swal({
-      title: "¿Está seguro de que desea cargar el archivo de texto?",
-      text: "Tenga en cuenta que el archivo solo será cargado si su nombre es 'Data.txt' y si su formato es correcto.",
+      title: "¿Está seguro de que desea cargar el archivo .csv?",
+      text: " ",
       icon: "warning",
       buttons: ["Cancelar", "Cargar"],
       dangerMode: true
@@ -46,6 +47,7 @@ class FileUploadComponent extends Component{
     return (
       <div className="home">
         <NavbarComponent />
+        <GlobalStyle />
         <Styles>
           <div class="f">
             <div class="container">
@@ -66,7 +68,7 @@ class FileUploadComponent extends Component{
           <hr>
           </hr>
           <div class="form1">
-            <h5><b>Recuerde que el nombre del archivo debe ser "Data.txt"!</b></h5>
+            <h5><b>Archivo con extencion "Acopio.csv"!</b></h5>
           </div>
         </Styles>
       </div>
@@ -77,33 +79,51 @@ class FileUploadComponent extends Component{
 export default FileUploadComponent;
 
 
+const GlobalStyle = createGlobalStyle`
+
+  body {
+    min-height: 100vh;
+    margin: 0;
+    background-image: linear-gradient(to bottom, #e0e8ff, #5d8ec2);
+  }
+
+`
+
+
 const Styles = styled.div`
-.container{
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  margin: 2%;
-}
-.f{
-  margin-top: 40px;
-  border: 3px solid rgb(162, 161, 161);
-  padding: 40px;
-  padding-top: 10px;
-  border-radius: 40px;
-  margin-left: 300px;
-  margin-right: 300px;
-}
-@media(max-width: 1200px){
-  .f{margin-left: 200px;
-    margin-right: 200px;}
-  
-}
-.form1{
-  border: 1px solid rgb(82, 82, 173);
-  padding: 30px;
-  border-radius: 30px;
-  margin-left: 300px;
-  margin-right: 300px;
-}
+
+
+  .container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 2%;
+  }
+
+  .f {
+    margin-top: 40px;
+    border: 3px solid rgb(255, 255, 255);
+    padding: 40px;
+    padding-top: 10px;
+    border-radius: 40px;
+    margin-left: 300px;
+    margin-right: 300px;
+  }
+
+  @media (max-width: 1200px) {
+    .f {
+      margin-left: 200px;
+      margin-right: 200px;
+    }
+
+  }
+
+  .form1 {
+    border: 1px solid rgb(255, 255, 255);
+    padding: 30px;
+    border-radius: 30px;
+    margin-left: 300px;
+    margin-right: 300px;
+  }
 `

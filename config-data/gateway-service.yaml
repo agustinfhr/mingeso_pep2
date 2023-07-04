@@ -40,7 +40,4 @@ spring:
           uri: lb://subir-data-service
           predicates:
             - Path=/subir-data/**
-        - id: oficinaRRHH-service
-          uri: lb://oficinaRRHH-service
-          predicates:
-            - Path=/planilla/**
+      

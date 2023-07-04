@@ -1,5 +1,5 @@
 import React, {Component, useState} from "react";
-import NavbarComponent4 from "./NavbarComponent4";
+import NavbarComponent2 from "./NavbarComponent2";
 import styled from "styled-components";
 import { createGlobalStyle } from 'styled-components'
 
@@ -7,40 +7,40 @@ class ProveedorComponent extends Component{
     constructor(props){
         super(props);
         this.state = {
-            proveedores: [],
+            datas: [],
         };
     }
 
     componentDidMount(){
-        fetch("http://localhost:8080/proveedor")
+        fetch("http://localhost:8080/subir-data")
             .then((response) => response.json())
-            .then((data) => this.setState({ proveedores: data }));
+            .then((data) => this.setState({ datas: data }));
     }
 
     render(){
         return(
             <div className="home">
-                <NavbarComponent4 />
+                <NavbarComponent2 />
                 <GlobalStyle />
                 <Styles>
-                    <h1 className="text-center"> <b>Listado de proveedores</b></h1>
+                    <h1 className="text-center"> <b>Ultimo Acopio.csv</b></h1>
                     <div className="f">
                         <table border="1" class="content-table">
                             <thead>
                             <tr>
-                                <th>Codigo</th>
-                                <th>Nombre</th>
-                                <th>Categoria</th>
-                                <th>Retencion</th>
+                                <th>Fecha</th>
+                                <th>Turno</th>
+                                <th>Proveedor</th>
+                                <th>kls Leche</th>
                             </tr>
                             </thead>
                             <tbody>
-                            {this.state.proveedores.map((proveedor) => (
-                                <tr key={proveedor.codigo}>
-                                    <td>{proveedor.codigo}</td>
-                                    <td>{proveedor.nombre}</td>
-                                    <td>{proveedor.categoria}</td>
-                                    <td>{proveedor.retencion}</td>
+                            {this.state.datas.map((acopio) => (
+                                <tr key={acopio.ID}>
+                                    <td>{acopio.fecha}</td>
+                                    <td>{acopio.turno}</td>
+                                    <td>{acopio.proveedor}</td>
+                                    <td>{acopio.kls_leche}</td>
                                 </tr>
                             ))}
                             </tbody>
@@ -66,6 +66,8 @@ const GlobalStyle = createGlobalStyle`
 `
 
 const Styles = styled.div`
+
+
 
   .text-center {
     text-align: center;

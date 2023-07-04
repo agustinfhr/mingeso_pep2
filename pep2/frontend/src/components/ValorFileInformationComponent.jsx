@@ -1,46 +1,45 @@
 import React, {Component, useState} from "react";
-import NavbarComponent4 from "./NavbarComponent4";
+import NavbarComponent2 from "./NavbarComponent2";
 import styled from "styled-components";
 import { createGlobalStyle } from 'styled-components'
+
 
 class ProveedorComponent extends Component{
     constructor(props){
         super(props);
         this.state = {
-            proveedores: [],
+            valores: [],
         };
     }
 
     componentDidMount(){
-        fetch("http://localhost:8080/proveedor")
+        fetch("http://localhost:8080/subir-valor")
             .then((response) => response.json())
-            .then((data) => this.setState({ proveedores: data }));
+            .then((data) => this.setState({ valores: data }));
     }
 
     render(){
         return(
             <div className="home">
-                <NavbarComponent4 />
+                <NavbarComponent2 />
                 <GlobalStyle />
                 <Styles>
-                    <h1 className="text-center"> <b>Listado de proveedores</b></h1>
+                    <h1 className="text-center"> <b>Ultimo Valores.csv</b></h1>
                     <div className="f">
                         <table border="1" class="content-table">
                             <thead>
                             <tr>
-                                <th>Codigo</th>
-                                <th>Nombre</th>
-                                <th>Categoria</th>
-                                <th>Retencion</th>
+                                <th>Proveedor</th>
+                                <th>%Grasa</th>
+                                <th>%Solido total</th>
                             </tr>
                             </thead>
                             <tbody>
-                            {this.state.proveedores.map((proveedor) => (
-                                <tr key={proveedor.codigo}>
-                                    <td>{proveedor.codigo}</td>
-                                    <td>{proveedor.nombre}</td>
-                                    <td>{proveedor.categoria}</td>
-                                    <td>{proveedor.retencion}</td>
+                            {this.state.valores.map((valor) => (
+                                <tr key={valor.ID}>
+                                    <td>{valor.proveedor}</td>
+                                    <td>{valor.pct_grasa}</td>
+                                    <td>{valor.pct_solido_total}</td>
                                 </tr>
                             ))}
                             </tbody>
@@ -66,6 +65,8 @@ const GlobalStyle = createGlobalStyle`
 `
 
 const Styles = styled.div`
+
+
 
   .text-center {
     text-align: center;
