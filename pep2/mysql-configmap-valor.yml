@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: valor
+data:
+  host: agustinfhr/my-mysql
+  name: valor

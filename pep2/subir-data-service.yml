@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: subir-data-service
+  labels:
+    app: subir-data-service
+spec:
+  selector:
+    app: subir-data-deployment
+  ports:
+    - protocol: TCP
+      port: 8083
+      targetPort: 8083
+  type: LoadBalancer

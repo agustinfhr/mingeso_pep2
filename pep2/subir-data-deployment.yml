@@ -1,0 +1,63 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: subir-data-deployment
+  labels:
+    app: subir-data-deployment
+spec:
+  selector:
+    matchLabels:
+      app: subir-data-deployment
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        app: subir-data-deployment
+    spec:
+      containers:
+        - name: subir-data
+          image: agustinfhr/subir-data-service
+          ports:
+            - containerPort: 8081
+          env:
+            - name: SPRING_CLOUD_CONFIG_URI
+              value: http://config-service:8081
+            - name: EUREKA_CLIENT_SERVICEURL_DEFAULTZONE
+              value: http://eureka-service:8761
+            - name: eureka.instance.preferIpAddress
+              value: "true"
+            - name: DB_HOST
+              valueFrom:
+                configMapKeyRef:
+                  name: subir-data
+                  key: host
+            - name: DB_NAME
+              valueFrom:
+                configMapKeyRef:
+                  name: subir-data
+                  key: name
+            - name: DB_USERNAME
+              valueFrom:
+                secretKeyRef:
+                  name: mysql-root-credentials
+                  key: username
+            - name: DB_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: mysql-root-credentials
+                  key: password
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: subir-data
+  labels:
+    app: subir-data
+spec:
+  selector:
+    app: subir-data-deployment
+  ports:
+    - protocol: TCP
+      port: 8083
+      targetPort: 8083
+  type: LoadBalancer

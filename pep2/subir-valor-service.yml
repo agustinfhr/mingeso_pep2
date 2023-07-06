@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: subir-valor-service
+  labels:
+    app: subir-valor-service
+spec:
+  selector:
+    app: subir-valor-deployment
+  ports:
+    - protocol: TCP
+      port: 8086
+      targetPort: 8086
+  type: LoadBalancer

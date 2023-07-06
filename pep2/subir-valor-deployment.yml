@@ -1,0 +1,63 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: subir-valor-deployment
+  labels:
+    app: subir-valor-deployment
+spec:
+  selector:
+    matchLabels:
+      app: subir-valor-deployment
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        app: subir-valor-deployment
+    spec:
+      containers:
+        - name: subir-valor
+          image: agustinfhr/subir-valor-service
+          ports:
+            - containerPort: 8081
+          env:
+            - name: SPRING_CLOUD_CONFIG_URI
+              value: http://config-service:8081
+            - name: EUREKA_CLIENT_SERVICEURL_DEFAULTZONE
+              value: http://eureka-service:8761
+            - name: eureka.instance.preferIpAddress
+              value: "true"
+            - name: DB_HOST
+              valueFrom:
+                configMapKeyRef:
+                  name: subir-valor
+                  key: host
+            - name: DB_NAME
+              valueFrom:
+                configMapKeyRef:
+                  name: subir-valor
+                  key: name
+            - name: DB_USERNAME
+              valueFrom:
+                secretKeyRef:
+                  name: mysql-root-credentials
+                  key: username
+            - name: DB_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: mysql-root-credentials
+                  key: password
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: subir-valor-service
+  labels:
+    app: subir-valor-service
+spec:
+  selector:
+    app: subir-valor-deployment
+  ports:
+    - protocol: TCP
+      port: 8086
+      targetPort: 8086
+  type: LoadBalancer
